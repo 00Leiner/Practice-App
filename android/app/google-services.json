@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "577248830801",
+    "project_id": "pracrice-project",
+    "storage_bucket": "pracrice-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577248830801:android:204931fd73dc4219cd1f70",
+        "android_client_info": {
+          "package_name": "com.example.practice_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWXpO3kUpKPvsdci0vkGK-bq6iEtLvHmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
