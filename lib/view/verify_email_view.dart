@@ -1,7 +1,7 @@
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_app/constants/routes.dart';
+
+import '../services/auth/auth_service.dart';
 
 class VerifyEmailView extends StatefulWidget {
   const VerifyEmailView({super.key});
@@ -13,29 +13,34 @@ class VerifyEmailView extends StatefulWidget {
 class _VerifyEmailViewState extends State<VerifyEmailView> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar( title: const Text('Verify Email'),),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Verify Email'),
+      ),
       body: Column(
-          children: [
-            const Text("We've sent you an email verification. Please open it to verify your account"),
-            const Text("If you haven't receive a verification email yet, please press the button below"),
-            TextButton(
+        children: [
+          const Text(
+              "We've sent you an email verification. Please open it to verify your account"),
+          const Text(
+              "If you haven't receive a verification email yet, please press the button below"),
+          TextButton(
               onPressed: () async {
-                 final user = FirebaseAuth.instance.currentUser;
-                 await user?.sendEmailVerification();
-              } , 
-            child: const Text('Send email verification')
-            ),
-            TextButton(
+                await AuthService.firebase().sendEmailVerification();
+              },
+              child: const Text('Send email verification')),
+          TextButton(
               onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushNamedAndRemoveUntil(registerRoute, (route) => false,);
-              } , 
-            child: const Text('Restart')
-            ),
-
-          ],
-        ),
+                await AuthService.firebase().logOut();
+                Future.delayed(Duration.zero, () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    registerRoute,
+                    (route) => false,
+                  );
+                });
+              },
+              child: const Text('Restart')),
+        ],
+      ),
     );
   }
 }
